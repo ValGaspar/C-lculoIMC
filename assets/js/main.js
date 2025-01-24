@@ -1,4 +1,5 @@
 function Escopo () {
+    //Captura eventode
     const form = document.querySelector('.formulario');
     const mostraValor = document.querySelector('.resultado');
 
@@ -19,19 +20,16 @@ function Escopo () {
         
         mostraValor.style.background = 'var(--primary-color-darker)';
 
-        if (resultado < 18.5){
-            mostraValor.innerHTML = `<span> ${resultado.toFixed(3)} (Abaixo do peso) </span>`;
-        } else if (resultado >= 18.5 && resultado <= 24.9) {
-            mostraValor.innerHTML = `<span> ${resultado.toFixed(3)} (Peso normal) </span>`;
-        } else if (resultado >=25 && resultado <=29.9){
-            mostraValor.innerHTML = `<span> ${resultado.toFixed(3)} (Sobrepeso) </span>`; 
-        } else if (resultado >= 30 && resultado <= 34.9){
-            mostraValor.innerHTML = `<span> ${resultado.toFixed(3)} (Obesidade grau 1) </span>`;
-        } else if (resultado >= 35 && resultado <= 39.9){
-            mostraValor.innerHTML = `<span> ${resultado.toFixed(3)} (Obesidade grau 2) </span>`;
-        } else if (resultado > 40 ){
-            mostraValor.innerHTML = `<span> ${resultado.toFixed(3)} (Obesidade grau 3) </span>`;
-        }
+        const nível = ['Abaixo do peso', 'Peso normal', 'Sobrepeso', 
+            'Obesidade grau 1', 'Obesidade grau 2', 'Obesidade grau 3'];
+
+        if (resultado >= 39.9) {return mostraValor.innerHTML = `<span> ${resultado.toFixed(3)} ${nível[5]}.</span>`;}
+        if (resultado >= 34.9) {return mostraValor.innerHTML = `<span> ${resultado.toFixed(3)} ${nível[4]}.</span>`;}
+        if (resultado >= 29.9) {return mostraValor.innerHTML = `<span> ${resultado.toFixed(3)} ${nível[3]}.</span>`;}
+        if (resultado >= 24.9) {return mostraValor.innerHTML = `<span> ${resultado.toFixed(3)} ${nível[2]}.</span>`;}
+        if (resultado >= 18.5) {return mostraValor.innerHTML = `<span> ${resultado.toFixed(3)} ${nível[1]}.</span>`;}
+        if (resultado < 18.5) {return mostraValor.innerHTML = `<span> ${resultado.toFixed(3)} ${nível[0]}.</span>`;}
+
     }
     form.addEventListener('submit', recebeEventForm);
 }
